@@ -1,0 +1,90 @@
+<!-- search for users -->
+<div>
+    <h3>Find User</h3>
+    <form class="well" (ngSubmit)="findUsers(key);findUsersForm.reset()" #findUsersForm="ngForm">
+        <div class="form-group">
+            <label for="key">User:</label>
+            <input class="form-control" id="key" type="text" required [(ngModel)]="key" name="key" placeholder="Type user name" #fndUsr="ngModel">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="!findUsersForm.form.valid" (click)="searchResults=true">Find</button>
+        </div>
+    </form>
+    <hr>
+</div>
+
+<!-- search results -->
+<div [hidden]="!searchResults">
+    <h3>
+    Search Results
+      <small>
+        <a href="#" (click)="showDetails=!showDetails">{{!showDetails && '(Show' || '(Hide'}} Details)</a>
+      </small>
+    </h3>
+    <div *ngFor="let user of foundUsers">
+        <div class="row">
+            <div class="col-xs-8">{{user.firstName}} {{user.lastName}}</div>
+        </div>
+        <div class="user-details" [hidden]="!showDetails">
+            <div class="row">
+                <div class="col-xs-8">{{user.street}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">{{user.city+","}} {{user.state}} {{user.zip}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">{{user.country}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">{{user.email+" |"}} {{user.phone}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8 text-danger">{{user.events.eventName}} on {{user.events.date}}</div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <input type="button" (click)="removeUser(user._id)" value="Unregister" class="btn btn-danger pull-right">
+        </div>
+    </div>
+    <hr />
+</div>
+
+<!-- Register New User -->
+<div>
+    <h3>Register New User</h3>
+    <form class="well" (ngSubmit)="addUser();userForm.reset()" #userForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input class="form-control" type="text" id="firstName" required [(ngModel)]="firstName" name="firstName" placeholder="First name" #fName="ngModel">
+        </div>
+        <div [hidden]="fName.valid || fName.pristine" class="alert alert-danger">
+            First name is required
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input class="form-control" type="text" id="lastName" required [(ngModel)]="lastName" name="lastName" placeholder="Last name" #lName="ngModel">
+        </div>
+        <div [hidden]="lName.valid || lName.pristine" class="alert alert-danger">
+            Last name is required
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+        </div>
+    </form>
+    <hr>
+</div>
+
+<!-- show all users / unregister -->
+<button class="btn btn-info" (click)="showAllUsers=!showAllUsers">{{!showAllUsers && 'Show' || 'Hide'}} All Users</button>
+<div [hidden]="!showAllUsers">
+    <h3>All Users</h3>
+    <div class="user-list">
+        <div *ngFor="let user of users">
+            <div class="row">
+                <div class="col-xs-8">{{user.firstName}} {{user.lastName}}</div>
+                <div class="col-xs-4">
+                    <input type="button" (click)="removeUser(user._id)" value="Unregister" class="btn btn-danger pull-right">
+                </div>
+            </div>
+        </div>
+    </div>

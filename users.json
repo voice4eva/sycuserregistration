@@ -1,0 +1,37 @@
+{
+  "firstName": "Aude",
+  "lastName": "Richard",
+  "street": "120 Antwerp Street, Unit 401",
+  "city": "Boston",
+  "zip": "02135",
+  "state": "MA",
+  "country": "USA",
+  "email": "auder@somemail.com",
+  "phone": "8787548743",
+  "events":
+    {
+      "eventName": "SYC Workshop",
+      "date": "05/30/2017",
+      "cost": "$20",
+      "paid": true
+
+    }
+},
+{
+  "firstName": "Sylvester",
+  "lastName": "Klirowski ",
+  "street": "120 Antwerp Street, Unit 401",
+  "city": "Boston",
+  "zip": "02135",
+  "state": "MA",
+  "country": "USA",
+  "email": "klirowski.s@gmail.com",
+  "phone": "8579193311",
+  "events":
+    {
+      "eventName": "SYC Workshop",
+      "date": "05/30/2017",
+      "cost": "$20",
+      "paid": false
+    }
+}
